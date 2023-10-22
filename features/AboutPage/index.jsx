@@ -32,7 +32,7 @@ export default () => {
         <CtaSectionHeading>
           Your destination is waiting. Your van is ready.
         </CtaSectionHeading>
-        <CtaSectionButton>Explore our vans</CtaSectionButton>
+        <CtaSectionButton to="/vans">Explore our vans</CtaSectionButton>
       </CtaSection>
     </Wrapper>
   );
