@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.section`
   min-height: calc(100vh - 110px - 50px - 44.094px);
@@ -60,7 +61,9 @@ export const VansContainer = styled.div`
   margin-bottom: 27px;
 `;
 
-export const VanElement = styled.div`
+export const VanElement = styled(Link)`
+  color: black;
+  text-decoration: none;
   display: grid;
   grid-template-columns: 1fr auto;
   justify-items: left;
@@ -69,6 +72,7 @@ export const VanElement = styled.div`
     "image image"
     "title  prize"
     "category  prize";
+  cursor: pointer;
 `;
 
 export const VanElementHeading = styled.h3`

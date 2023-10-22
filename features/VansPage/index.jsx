@@ -1,4 +1,4 @@
-import useVans from "../../useVans";
+import useFetchData from "../../useFetchData";
 import {
   ClearFilterButton,
   FilterElement,
@@ -15,7 +15,7 @@ import {
 } from "./styled";
 
 export default function VansPage() {
-  const [isFetched, vans] = useVans();
+  const [data, isFetched] = useFetchData("/api/vans");
   return (
     <Wrapper>
       <SectionHeading>Explore our van options</SectionHeading>
@@ -29,23 +29,25 @@ export default function VansPage() {
       </SectionFilters>
       <VansContainer>
         {isFetched
-          ? vans.map((van) => (
-              <VanElement key={van.id}>
-                <VanElementImage src={van.imageUrl} />
-                <VanElementHeading>{van.name}</VanElementHeading>
-                <VanElementCategory
-                  category={
-                    van.type.slice(0, 1).toUpperCase() + van.type.slice(1)
-                  }
-                >
-                  {van.type.slice(0, 1).toUpperCase() + van.type.slice(1)}
-                </VanElementCategory>
-                <VanElementPrizeContainer>
-                  <h4>${van.price}</h4>
-                  <p>/day</p>
-                </VanElementPrizeContainer>
-              </VanElement>
-            ))
+          ? data.vans
+            ? data.vans.map((van) => (
+                <VanElement to={`/vans/${van.id}`} key={van.id}>
+                  <VanElementImage src={van.imageUrl} />
+                  <VanElementHeading>{van.name}</VanElementHeading>
+                  <VanElementCategory
+                    category={
+                      van.type.slice(0, 1).toUpperCase() + van.type.slice(1)
+                    }
+                  >
+                    {van.type.slice(0, 1).toUpperCase() + van.type.slice(1)}
+                  </VanElementCategory>
+                  <VanElementPrizeContainer>
+                    <h4>${van.price}</h4>
+                    <p>/day</p>
+                  </VanElementPrizeContainer>
+                </VanElement>
+              ))
+            : null
           : null}
       </VansContainer>
     </Wrapper>
