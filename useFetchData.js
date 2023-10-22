@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import "./server";
 
-const useVans = () => {
-  const [vans, setVans] = useState(undefined);
+const useFetchData = (link) => {
+  const [data, setData] = useState(undefined);
   const [isFetched, setIsFetched] = useState(false);
 
   const fetchDataFromAPI = async () => {
     try {
-      const response = await fetch("/api/vans/");
+      const response = await fetch(link);
       if (!response.ok) {
         throw new Error(response.status);
       }
       const data = await response.json();
-      setVans((vans) => (vans = data.vans));
+      setData((currentData) => (currentData = data));
       setIsFetched(true);
     } catch (error) {
       console.error(error);
@@ -23,7 +23,7 @@ const useVans = () => {
     fetchDataFromAPI();
   }, []);
 
-  return [isFetched, vans];
+  return [data, isFetched];
 };
 
-export default useVans;
+export default useFetchData;
