@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useFetchData from "../../useFetchData";
+import useFetchData from "../../../useFetchData";
 import {
   GoBackButton,
   RentButton,

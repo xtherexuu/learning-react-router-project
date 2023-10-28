@@ -1,4 +1,4 @@
-import useFetchData from "../../useFetchData";
+import useFetchData from "../../../useFetchData";
 import {
   ClearFilterButton,
   FilterElement,
