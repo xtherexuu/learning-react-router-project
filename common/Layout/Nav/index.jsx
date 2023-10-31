@@ -8,13 +8,13 @@ export default function Nav() {
       </NavHeading>
       <NavList>
         <ListItem>
-          <StyledLink to="/host">Host</StyledLink>
+          <StyledLink to="host">Host</StyledLink>
         </ListItem>
         <ListItem>
-          <StyledLink to="/about">About</StyledLink>
+          <StyledLink to="about">About</StyledLink>
         </ListItem>
         <ListItem>
-          <StyledLink to="/vans">Vans</StyledLink>
+          <StyledLink to="vans">Vans</StyledLink>
         </ListItem>
       </NavList>
     </Wrapper>
