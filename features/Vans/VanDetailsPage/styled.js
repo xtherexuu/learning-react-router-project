@@ -12,6 +12,11 @@ export const GoBackButton = styled(Link)`
   line-height: 23px;
   margin-bottom: 27px;
   display: inline-block;
+  &:hover {
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+  }
 `;
 
 export const VanImage = styled.img`
