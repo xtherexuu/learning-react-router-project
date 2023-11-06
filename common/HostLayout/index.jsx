@@ -1,18 +1,18 @@
 import { Outlet } from "react-router-dom";
-import { HostNav, NavElement, StyledLink, Wrapper } from "./styled";
+import { HostNav, NavElement, StyledNavLink, Wrapper } from "./styled";
 
 export default function HostLayout() {
   return (
     <Wrapper>
       <HostNav>
         <NavElement>
-          <StyledLink to="/host">Dashboard</StyledLink>
+          <StyledNavLink to="/host" end>Dashboard</StyledNavLink>
         </NavElement>
         <NavElement>
-          <StyledLink to="income">Income</StyledLink>
+          <StyledNavLink to="income">Income</StyledNavLink>
         </NavElement>
         <NavElement>
-          <StyledLink to="review">Reviews</StyledLink>
+          <StyledNavLink to="review">Reviews</StyledNavLink>
         </NavElement>
       </HostNav>
       <Outlet />
