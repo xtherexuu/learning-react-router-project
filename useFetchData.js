@@ -3,7 +3,7 @@ import "./server";
 
 const useFetchData = (link) => {
   const [data, setData] = useState(undefined);
-  const [isFetched, setIsFetched] = useState(false);
+  const [fetchStatus, setFetchStatus] = useState("pending");
 
   const fetchDataFromAPI = async () => {
     try {
@@ -13,8 +13,9 @@ const useFetchData = (link) => {
       }
       const data = await response.json();
       setData((currentData) => (currentData = data));
-      setIsFetched(true);
+      setFetchStatus("resolved");
     } catch (error) {
+      setFetchStatus("error");
       console.error(error);
     }
   };
@@ -23,7 +24,7 @@ const useFetchData = (link) => {
     fetchDataFromAPI();
   }, []);
 
-  return [data, isFetched];
+  return [data, fetchStatus];
 };
 
 export default useFetchData;
