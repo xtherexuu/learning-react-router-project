@@ -6,10 +6,13 @@ export default function HostLayout() {
     <Wrapper>
       <HostNav>
         <NavElement>
-          <StyledNavLink to="/host" end>Dashboard</StyledNavLink>
+          <StyledNavLink to="." end>Dashboard</StyledNavLink>
         </NavElement>
         <NavElement>
           <StyledNavLink to="income">Income</StyledNavLink>
+        </NavElement>
+        <NavElement>
+          <StyledNavLink to="vans">Vans</StyledNavLink>
         </NavElement>
         <NavElement>
           <StyledNavLink to="review">Reviews</StyledNavLink>

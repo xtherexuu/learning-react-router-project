@@ -33,17 +33,17 @@ export const VanCategory = styled.p`
   font-weight: 500;
   line-height: 31.66px;
   ${({ category }) =>
-    category === "Simple" &&
+    category === "simple" &&
     css`
       background-color: #e17654;
     `}
   ${({ category }) =>
-    category === "Luxury" &&
+    category === "luxury" &&
     css`
       background-color: #161616;
     `}
     ${({ category }) =>
-    category === "Rugged" &&
+    category === "rugged" &&
     css`
       background-color: #115e59;
     `}

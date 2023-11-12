@@ -4,12 +4,15 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 110px - 50px - 44.094px);
+  padding: 0 27px;
 `;
 
 export const HostNav = styled.ul`
   list-style: none inside;
   display: flex;
   gap: 27px;
+  padding: 0;
 `;
 
 export const NavElement = styled.li`

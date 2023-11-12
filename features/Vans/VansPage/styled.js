@@ -70,8 +70,8 @@ export const VanElement = styled(Link)`
   grid-template-areas:
     "image image"
     "image image"
-    "title  prize"
-    "category  prize";
+    "title  price"
+    "category  price";
   cursor: pointer;
 `;
 
@@ -89,10 +89,10 @@ export const VanElementImage = styled.img`
   margin-bottom: 13px;
 `;
 
-export const VanElementPrizeContainer = styled.span`
+export const VanElementPriceContainer = styled.span`
   display: flex;
   flex-direction: column;
-  grid-area: prize;
+  grid-area: price;
   & > h4 {
     font-weight: 600;
     font-size: 20px;
@@ -115,17 +115,17 @@ export const VanElementCategory = styled.p`
   padding: 7.5px 13px;
   margin: 0;
   ${({ category }) =>
-    category === "Simple" &&
+    category === "simple" &&
     css`
       background-color: #e17654;
     `}
   ${({ category }) =>
-    category === "Luxury" &&
+    category === "luxury" &&
     css`
       background-color: #161616;
     `}
     ${({ category }) =>
-    category === "Rugged" &&
+    category === "rugged" &&
     css`
       background-color: #115e59;
     `}
