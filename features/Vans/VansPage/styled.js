@@ -12,45 +12,54 @@ export const SectionHeading = styled.h2`
   margin: 27px 0;
 `;
 
-export const SectionFilters = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 27px;
-  margin: 27px 0 57px;
-`;
-
 export const Filters = styled.ul`
   flex-grow: 1;
+  flex-wrap: wrap;
   padding: 0;
   list-style: none inside;
   display: flex;
   justify-content: space-between;
+  gap: 27px;
+  margin-bottom: 27px;
 `;
 
-export const FilterElement = styled.li`
+export const FilterElement = styled.button`
   font-weight: 500;
   line-height: 23.92px;
   background-color: #ffead0;
   border-radius: 5px;
   padding: 6px 26px;
   color: #4d4d4d;
+  text-decoration: none;
+  border: none;
   &:hover {
     color: black;
     text-decoration: underline;
     cursor: pointer;
   }
+  ${({ isactive }) =>
+    isactive === "simple"
+      ? css`
+          background-color: #e17654;
+          color: #ffead0 !important;
+        `
+      : isactive === "luxury"
+      ? css`
+          background-color: #161616;
+          color: #ffead0 !important;
+        `
+      : isactive === "rugged"
+      ? css`
+          background-color: #115e59;
+          color: #ffead0 !important;
+        `
+      : null}
 `;
 
-export const ClearFilterButton = styled.button`
+export const ClearFilterButton = styled(FilterElement)`
+  display: flex;
+  align-items: center;
   background-color: transparent;
-  border: none;
-  font-weight: 500;
-  color: #4d4d4d;
-  &:hover {
-    color: black;
-    text-decoration: underline;
-    cursor: pointer;
-  }
 `;
 
 export const VansContainer = styled.div`

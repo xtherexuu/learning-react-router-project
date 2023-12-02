@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useFetchData from "../../../useFetchData";
 import {
   GoBackButton,
@@ -14,10 +14,15 @@ import {
 export default function HostVanDetailPage() {
   const params = useParams();
   const [van, fetchStatus] = useFetchData(`/api/vans/${params.id}`);
+  const location = useLocation();
+  const returnSearchParams = location.state?.search || "";
+  const searchTypeParameter = location.state?.type || "all";
 
   return (
     <Wrapper>
-      <GoBackButton to="/vans">⬅ Back to all vans</GoBackButton>
+      <GoBackButton to={`..${returnSearchParams}`} relative="path">
+        ⬅ Back to {searchTypeParameter} vans
+      </GoBackButton>
       {fetchStatus === "pending" ? (
         <h1>Loading...</h1>
       ) : fetchStatus === "error" ? (
