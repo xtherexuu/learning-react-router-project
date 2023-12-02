@@ -21,7 +21,7 @@ export default function HostVans() {
         <h1>Something wents wrong! 😥 Refresh the site or try again later.</h1>
       ) : fetchStatus === "resolved" ? (
         vans.vans.map((van) => (
-          <VanBlock to={`${van.id}`} key={van.id}>
+          <VanBlock to={van.id} key={van.id}>
             <BlockImage src={van.imageUrl} />
             <BlockName>{van.name}</BlockName>
             <BlockPrice>${van.price}/day</BlockPrice>
