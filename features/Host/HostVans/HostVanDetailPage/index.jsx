@@ -27,7 +27,7 @@ export default function HostHostVanDetailPage() {
 
   return (
     <Wrapper>
-      <StyledLink to=".." relative="path">
+      <StyledLink to="../vans" relative="route">
         ⬅ Back to all vans
       </StyledLink>
       <VanBlock>
