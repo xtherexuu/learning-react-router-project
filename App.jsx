@@ -13,6 +13,7 @@ import HostHostVanDetailPage from "./features/Host/HostVans/HostVanDetailPage";
 import HostVanDetailPageDashboard from "./features/Host/HostVans/HostVanDetailPage/Dashboard";
 import HostVanDetailPagePricing from "./features/Host/HostVans/HostVanDetailPage/Pricing";
 import HostVanDetailPagePhotos from "./features/Host/HostVans/HostVanDetailPage/Photos";
+import ErrorPage from "./common/ErrorPage";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
             </Route>
             <Route path="review" element={<HostReviews />} />
           </Route>
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
