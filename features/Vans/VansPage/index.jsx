@@ -1,5 +1,6 @@
-import { useSearchParams } from "react-router-dom";
+import { useLoaderData, useSearchParams, Await, defer } from "react-router-dom";
 import useFetchData from "../../../useFetchData";
+import { fetchData } from "../../../api";
 import {
   ClearFilterButton,
   FilterElement,
@@ -13,9 +14,20 @@ import {
   VansContainer,
   Wrapper,
 } from "./styled";
+import React from "react";
+
+const wait = (t, v) => {
+  return new Promise((resolve) => setTimeout(resolve, t, v));
+};
+
+export function loader() {
+  const data = fetchData("/api/vans");
+  return defer({ data: data });
+}
 
 export default function VansPage() {
-  const [data, fetchStatus] = useFetchData("/api/vans");
+  const loaderData = useLoaderData();
+  // const [data, fetchStatus] = useFetchData("/api/vans");
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
 
@@ -48,7 +60,7 @@ export default function VansPage() {
         ) : null}
       </Filters>
       <VansContainer>
-        {fetchStatus === "pending" ? (
+        {/* {fetchStatus === "pending" ? (
           <h1>Loading...</h1>
         ) : fetchStatus === "error" ? (
           <h1>Something wents wrong! 😥 Try again later.</h1>
@@ -77,7 +89,37 @@ export default function VansPage() {
             ))
         ) : (
           <h1>Something wents wrong! 😥 Try again later.</h1>
-        )}
+        )} */}
+        <React.Suspense fallback={<h1>LOADING...</h1>}>
+          <Await resolve={loaderData.data}>
+            {(data) =>
+              data.vans
+                .filter((van) =>
+                  typeFilter ? (van.type === typeFilter ? true : false) : true
+                )
+                .map((van) => (
+                  <VanElement
+                    to={van.id}
+                    state={{
+                      search: `?${searchParams.toString()}`,
+                      type: typeFilter,
+                    }}
+                    key={van.id}
+                  >
+                    <VanElementImage src={van.imageUrl} />
+                    <VanElementHeading>{van.name}</VanElementHeading>
+                    <VanElementCategory category={van.type}>
+                      {van.type.slice(0, 1).toUpperCase() + van.type.slice(1)}
+                    </VanElementCategory>
+                    <VanElementPriceContainer>
+                      <h4>${van.price}</h4>
+                      <p>/day</p>
+                    </VanElementPriceContainer>
+                  </VanElement>
+                ))
+            }
+          </Await>
+        </React.Suspense>
       </VansContainer>
     </Wrapper>
   );
