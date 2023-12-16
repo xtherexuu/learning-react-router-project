@@ -9,14 +9,18 @@ const useFetchData = (link) => {
     try {
       const response = await fetch(link);
       if (!response.ok) {
-        throw new Error(response.status);
+        throw {
+          message: "Failed to fetch",
+          statusText: response.statusText,
+          status: response.status,
+        };
       }
       const data = await response.json();
       setData((currentData) => (currentData = data));
       setFetchStatus("resolved");
     } catch (error) {
       setFetchStatus("error");
-      console.error(error);
+      console.error(error.status + ", " + error.statusText)
     }
   };
 
