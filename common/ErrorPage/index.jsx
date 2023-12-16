@@ -1,17 +1,22 @@
 import { Wrapper, Button, TextElement } from "./styled";
+import { useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {
+  const error = useRouteError();
+
+  console.error("Error code: " + error.status + " || Error status: " + error.statusText)
+
   return (
     <Wrapper>
       <TextElement>
-        <span>Error 404</span>
+        <span>Error</span>
         <br />
         <br />
-        Sorry, we couldn't find site what you've been searching for. 😥
+        Sorry, {error.message} 😥
         <br />
         Try again later o go to our homepage using button below.
       </TextElement>
-      <Button to="/">Wróć na stronę główną</Button>
+      <Button to="/">Go back to the homepage</Button>
     </Wrapper>
   );
 }
