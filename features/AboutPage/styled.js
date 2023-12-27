@@ -35,6 +35,7 @@ export const CtaSection = styled.div`
   padding-bottom: 32px;
   margin-inline: 27px;
   border-radius: 5px;
+  margin-bottom: 55px;
 `;
 
 export const CtaSectionHeading = styled.h3`
