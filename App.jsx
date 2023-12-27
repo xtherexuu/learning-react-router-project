@@ -20,6 +20,7 @@ import HostVanDetailPagePricing from "./features/Host/HostVans/HostVanDetailPage
 import HostVanDetailPagePhotos from "./features/Host/HostVans/HostVanDetailPage/Photos";
 import NotFoundErrorPage from "./common/NotFoundErrorPage";
 import ErrorPage from "./common/ErrorPage";
+import LoginPage from "./features/LoginPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage />}
         loader={vansPageLoader}
       />
+      <Route path="login" element={<LoginPage />} />
       <Route path="vans/:id" element={<HostVanDetailPage />} />
       <Route path="host" element={<HostLayout />}>
         <Route index element={<HostDashboard />} />
