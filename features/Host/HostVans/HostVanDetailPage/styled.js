@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
-  margin-top: 45px;
+  margin: 45px 0;
 `;
 
 export const StyledLink = styled(Link)`
