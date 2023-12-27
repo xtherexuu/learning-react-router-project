@@ -1,4 +1,5 @@
 import { Wrapper, NavList, ListItem, NavHeading, StyledLink } from "./styled";
+import loginIconSrc from "../../../Utils/loginIcom.png";
 
 export default function Nav() {
   return (
@@ -15,6 +16,13 @@ export default function Nav() {
         </ListItem>
         <ListItem>
           <StyledLink to="vans">Vans</StyledLink>
+        </ListItem>
+        <ListItem>
+          <StyledLink to="login">
+            <div>
+              <img src={loginIconSrc}></img>
+            </div>
+          </StyledLink>
         </ListItem>
       </NavList>
     </Wrapper>
