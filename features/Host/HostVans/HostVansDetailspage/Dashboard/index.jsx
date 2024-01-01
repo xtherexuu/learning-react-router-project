@@ -7,7 +7,7 @@ import {
   InformationHeading,
 } from "./styled";
 
-export default function HostVanDetailPageDashboard() {
+export default function HostVansDetailspageDashboard() {
   const [dataObj] = useOutletContext();
 
   return (

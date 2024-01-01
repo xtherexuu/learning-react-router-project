@@ -9,6 +9,10 @@ import {
   VanBlock,
 } from "./styled";
 
+export function loader() {
+  return null;
+}
+
 export default function HostVans() {
   const [vans, fetchStatus] = useFetchData("/api/host/vans");
 

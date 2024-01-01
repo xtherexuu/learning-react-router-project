@@ -11,7 +11,7 @@ import {
   Wrapper,
 } from "./styled";
 
-export default function HostVanDetailPage() {
+export default function VansDetailspage() {
   const params = useParams();
   const [van, fetchStatus] = useFetchData(`/api/vans/${params.id}`);
   const location = useLocation();

@@ -16,7 +16,11 @@ import {
 } from "./styled";
 import { Fragment, useEffect } from "react";
 
-export default function HostHostVanDetailPage() {
+export function loader() {
+  return null;
+};
+
+export default function HostVansDetailspage() {
   const { id } = useParams();
 
   const [van, fetchStatus] = useFetchData(`/api/host/vans/${id}`);

@@ -6,7 +6,7 @@ import {
   AdditionalElement,
 } from "./styled";
 
-export default function HostVanDetailPagePhotos() {
+export default function HostVansDetailspagePhotos() {
   const [dataObj] = useOutletContext();
 
   return (

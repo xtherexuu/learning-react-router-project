@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router-dom";
 import { Wrapper, PhotoElement } from "./styled";
 
-export default function HostVanDetailPagePricing() {
+export default function HostVansDetailspagePricing() {
   const [dataObj] = useOutletContext();
 
   return (
