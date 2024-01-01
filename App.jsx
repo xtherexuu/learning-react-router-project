@@ -44,7 +44,7 @@ const router = createBrowserRouter(
           <Route path="pricing" element={<HostVanDetailPagePricing />} />
           <Route path="photos" element={<HostVanDetailPagePhotos />} />
         </Route>
-        <Route path="review" element={<HostReviews />} />
+        <Route path="reviews" element={<HostReviews />} />
       </Route>
       <Route path="*" element={<NotFoundErrorPage />} />
     </Route>

@@ -15,7 +15,7 @@ export default function HostLayout() {
           <StyledNavLink to="vans">Vans</StyledNavLink>
         </NavElement>
         <NavElement>
-          <StyledNavLink to="review">Reviews</StyledNavLink>
+          <StyledNavLink to="reviews">Reviews</StyledNavLink>
         </NavElement>
       </HostNav>
       <Outlet />
