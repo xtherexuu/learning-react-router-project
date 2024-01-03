@@ -1,4 +1,4 @@
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useLoaderData, useParams } from "react-router-dom";
 import useFetchData from "../../../../useFetchData";
 import {
   Wrapper,
@@ -15,19 +15,18 @@ import {
   BlockDataContainer,
 } from "./styled";
 import { Fragment, useEffect } from "react";
+import { fetchData } from "../../../../api";
 
-export function loader() {
-  return null;
-};
+export function loader({ params }) {
+  const id = params.id;
+  return fetchData(`/api/host/vans/${id}`);
+}
 
 export default function HostVansDetailspage() {
-  const { id } = useParams();
+  // const { id } = useParams();
+  // const [van, fetchStatus] = useFetchData(`/api/host/vans/${id}`);
 
-  const [van, fetchStatus] = useFetchData(`/api/host/vans/${id}`);
-
-  useEffect(() => {
-    console.log(van);
-  }, [van]);
+  const van = useLoaderData();
 
   return (
     <Wrapper>
@@ -35,7 +34,7 @@ export default function HostVansDetailspage() {
         ⬅ Back to all vans
       </StyledLink>
       <VanBlock>
-        {fetchStatus === "pending" ? (
+        {/* {fetchStatus === "pending" ? (
           <h1>Loading...</h1>
         ) : fetchStatus === "error" ? (
           <h1>
@@ -67,7 +66,24 @@ export default function HostVansDetailspage() {
           <h1>
             Something wents wrong! 😥 Refresh the site or try again later.
           </h1>
-        )}
+        )} */}
+
+        {van.vans.map((van) => (
+          <Fragment key={van.id}>
+            <BlockImage src={van.imageUrl} />
+            <BlockDataContainer>
+              <BlockType vantype={van.type}>
+                {van.type.slice(0, 1).toUpperCase() + van.type.slice(1)}
+              </BlockType>
+              <BlockName>{van.name}</BlockName>
+              <BlockPriceContainer>
+                <PriceFirstPart>${van.price}/</PriceFirstPart>
+                <PriceSecoundPart>day</PriceSecoundPart>
+              </BlockPriceContainer>
+            </BlockDataContainer>
+          </Fragment>
+        ))}
+
         <BlockNav>
           <StyledNavLink to="." end>
             Details
@@ -76,7 +92,8 @@ export default function HostVansDetailspage() {
           <StyledNavLink to="./photos">Photos</StyledNavLink>
         </BlockNav>
       </VanBlock>
-      {fetchStatus === "pending" ? null : fetchStatus ===
+
+      {/* {fetchStatus === "pending" ? null : fetchStatus ===
         "error" ? null : fetchStatus === "resolved" ? (
         van.vans.length > 0 ? (
           <Outlet
@@ -91,7 +108,19 @@ export default function HostVansDetailspage() {
             ]}
           />
         ) : null
-      ) : null}
+      ) : null} */}
+
+      <Outlet
+        context={[
+          {
+            name: van.vans[0].name,
+            description: van.vans[0].description,
+            type: van.vans[0].type,
+            price: van.vans[0].price,
+            imageUrl: van.vans[0].imageUrl,
+          },
+        ]}
+      />
     </Wrapper>
   );
 }

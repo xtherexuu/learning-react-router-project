@@ -1,5 +1,5 @@
-import { useLocation, useParams } from "react-router-dom";
-import useFetchData from "../../../useFetchData";
+import { useLoaderData, useLocation, useParams } from "react-router-dom";
+// import useFetchData from "../../../useFetchData";
 import {
   GoBackButton,
   RentButton,
@@ -10,20 +10,28 @@ import {
   VanPrice,
   Wrapper,
 } from "./styled";
+import { fetchData } from "../../../api";
+
+export function loader({ params }) {
+  const id = params.id;
+  return fetchData(`/api/vans/${id}`);
+}
 
 export default function VansDetailspage() {
-  const params = useParams();
-  const [van, fetchStatus] = useFetchData(`/api/vans/${params.id}`);
+  // const params = useParams();
+  // const [van, fetchStatus] = useFetchData(`/api/vans/${params.id}`);
   const location = useLocation();
   const returnSearchParams = location.state?.search || "";
   const searchTypeParameter = location.state?.type || "all";
+
+  const van = useLoaderData();
 
   return (
     <Wrapper>
       <GoBackButton to={`..${returnSearchParams}`} relative="path">
         ⬅ Back to {searchTypeParameter} vans
       </GoBackButton>
-      {fetchStatus === "pending" ? (
+      {/* {fetchStatus === "pending" ? (
         <h1>Loading...</h1>
       ) : fetchStatus === "error" ? (
         <h1>Something wents wrong! 😥 Try again later.</h1>
@@ -55,7 +63,27 @@ export default function VansDetailspage() {
         )
       ) : (
         <h1>Something wents wrong! 😥 Try again later.</h1>
-      )}
+      )} */}
+      {
+        <>
+          <VanImage src={van.vans.imageUrl} />
+          <VanCategory category={van.vans.type}>
+            {van.vans.type.slice(0, 1).toUpperCase() + van.vans.type.slice(1)}
+          </VanCategory>
+          <VanName>{van.vans.name}</VanName>
+          <VanPrice>
+            <h3>${van.vans.price}</h3>
+            <p>/day</p>
+          </VanPrice>
+          <VanDescription>
+            The Modest Explorer is a van designed to get you out of the house
+            and into nature. This beauty is equipped with solar panels, a
+            composting toilet, a water tank and kitchenette. The idea is that
+            you can pack up your home and escape for a weekend or even longer!
+          </VanDescription>
+          <RentButton>Rent this van</RentButton>
+        </>
+      }
     </Wrapper>
   );
 }
