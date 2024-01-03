@@ -19,7 +19,7 @@ export default function ErrorPage() {
           : error.message}{" "}
         😥
         <br />
-        Try again later o go to our homepage using button below.
+        Try again later or go to our homepage using button below.
       </TextElement>
       <Button to="/">Go back to the homepage</Button>
     </Wrapper>
