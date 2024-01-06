@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Wrapper = styled.section`
   min-height: calc(100vh - 110px - 50px - 44.094px);
@@ -10,18 +10,25 @@ export const Wrapper = styled.section`
 `;
 
 export const Heading = styled.h1`
+  margin-bottom: 45px;
   text-align: center;
   font-size: 32px;
   font-weight: 700;
+  ${({ isMargin }) =>
+    isMargin &&
+    css`
+      margin-bottom: 0;
+    `}
 `;
 
 export const Message = styled.p`
-  animation-name: loginColor;
+  animation-name: loginMessageAnimation;
   animation-duration: 800ms;
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   font-size: 20px;
   font-weight: 600;
+  margin-bottom: 45px;
 `;
 
 export const Form = styled.form`

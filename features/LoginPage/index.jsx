@@ -19,7 +19,7 @@ export default function LoginPage() {
   const message = useLoaderData();
   return (
     <Wrapper>
-      <Heading>Sign in to your account</Heading>
+      <Heading isMargin={message ? true : false}>Sign in to your account</Heading>
       {message && <Message>{message}</Message>}
       <Form>
         <FormInput

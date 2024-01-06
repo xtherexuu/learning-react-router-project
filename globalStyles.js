@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-    @keyframes loginColor {
+    @keyframes loginMessageAnimation {
         0% {
             color: rgb(255, 100, 100);
             transform: translateX(0px);
