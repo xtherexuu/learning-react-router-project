@@ -15,6 +15,15 @@ export const Heading = styled.h1`
   font-weight: 700;
 `;
 
+export const Message = styled.p`
+  animation-name: loginColor;
+  animation-duration: 800ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  font-size: 20px;
+  font-weight: 600;
+`;
+
 export const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr;

@@ -1,3 +1,4 @@
+import { useLoaderData } from "react-router-dom";
 import {
   Wrapper,
   CreateAccountText,
@@ -7,12 +8,19 @@ import {
   FormInput,
   Heading,
   CreateAccountContainer,
+  Message,
 } from "./styled";
 
+export function loader({ request }) {
+  return new URL(request.url).searchParams?.get("message") || null;
+}
+
 export default function LoginPage() {
+  const message = useLoaderData();
   return (
     <Wrapper>
       <Heading>Sign in to your account</Heading>
+      {message && <Message>{message}</Message>}
       <Form>
         <FormInput
           type="text"

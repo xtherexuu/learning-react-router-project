@@ -24,7 +24,7 @@ import HostVansDetailspagePricing from "./features/Host/HostVans/HostVansDetails
 import HostVansDetailspagePhotos from "./features/Host/HostVans/HostVansDetailspage/Photos";
 import NotFoundErrorPage from "./common/NotFoundErrorPage";
 import ErrorPage from "./common/ErrorPage";
-import LoginPage from "./features/LoginPage";
+import LoginPage, {loader as loginPageLoader} from "./features/LoginPage";
 import { chceckIfUserIsLogedIn } from "./api";
 
 const router = createBrowserRouter(
@@ -38,7 +38,7 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage />}
         loader={vansPageLoader}
       />
-      <Route path="login" element={<LoginPage />} />
+      <Route path="login" element={<LoginPage />} loader={loginPageLoader} />
       <Route
         path="vans/:id"
         element={<VansDetailspage />}

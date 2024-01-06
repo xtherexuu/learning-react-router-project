@@ -14,8 +14,8 @@ export async function fetchData(link) {
 }
 
 export async function chceckIfUserIsLogedIn() {
-  const isLoggedIn = true;
-  const response = redirect("/login");
+  const isLoggedIn = false;
+  const response = redirect("/login?message=Sorry, you have to log in before you go on that page!");
   response.body = true;
   if (!isLoggedIn) {
     throw response;
