@@ -1,5 +1,5 @@
 import { Outlet, useLoaderData, useParams } from "react-router-dom";
-import useFetchData from "../../../../useFetchData";
+// import useFetchData from "../../../../useFetchData";
 import {
   Wrapper,
   BlockImage,
@@ -15,9 +15,10 @@ import {
   BlockDataContainer,
 } from "./styled";
 import { Fragment, useEffect } from "react";
-import { fetchData } from "../../../../api";
+import { chceckIfUserIsLogedIn, fetchData } from "../../../../api";
 
-export function loader({ params }) {
+export async function loader({ params }) {
+  await chceckIfUserIsLogedIn();
   const id = params.id;
   return fetchData(`/api/host/vans/${id}`);
 }

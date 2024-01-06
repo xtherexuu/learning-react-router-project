@@ -12,15 +12,9 @@ import VansDetailspage, {
 } from "./features/Vans/VansDetailspage";
 import Layout from "./common/Layout";
 import HostLayout from "./common/HostLayout";
-import HostDashboard, {
-  loader as hostDashboardLoader,
-} from "./features/Host/HostDashboard";
-import HostIncome, {
-  loader as hostIncomeLoader,
-} from "./features/Host/HostIncome";
-import HostReviews, {
-  loader as hostReviewsLoader,
-} from "./features/Host/HostReviews";
+import HostDashboard from "./features/Host/HostDashboard";
+import HostIncome from "./features/Host/HostIncome";
+import HostReviews from "./features/Host/HostReviews";
 import HostVans, { loader as hostVansLoader } from "./features/Host/HostVans";
 import HostVansDetailspage, {
   loader as hostVansDetailspageLoader,
@@ -31,6 +25,7 @@ import HostVansDetailspagePhotos from "./features/Host/HostVans/HostVansDetailsp
 import NotFoundErrorPage from "./common/NotFoundErrorPage";
 import ErrorPage from "./common/ErrorPage";
 import LoginPage from "./features/LoginPage";
+import { chceckIfUserIsLogedIn } from "./api";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,12 +45,17 @@ const router = createBrowserRouter(
         loader={vansDeatailspageLoader}
         errorElement={<ErrorPage />}
       />
+
       <Route path="host" element={<HostLayout />}>
-        <Route index element={<HostDashboard />} loader={hostDashboardLoader} />
+        <Route
+          index
+          element={<HostDashboard />}
+          loader={async () => await chceckIfUserIsLogedIn()}
+        />
         <Route
           path="income"
           element={<HostIncome />}
-          loader={hostIncomeLoader}
+          loader={async () => await chceckIfUserIsLogedIn()}
         />
         <Route
           path="vans"
@@ -72,17 +72,13 @@ const router = createBrowserRouter(
           <Route
             index
             element={<HostVansDetailspageDashboard />}
-            loader={async () => {
-              return null;
-            }}
+            loader={async () => await chceckIfUserIsLogedIn()}
           />
           <Route
             path="pricing"
             element={
               <HostVansDetailspagePricing
-                loader={async () => {
-                  return null;
-                }}
+                loader={async () => await chceckIfUserIsLogedIn()}
               />
             }
           />
@@ -90,9 +86,7 @@ const router = createBrowserRouter(
             path="photos"
             element={
               <HostVansDetailspagePhotos
-                loader={async () => {
-                  return null;
-                }}
+                loader={async () => await chceckIfUserIsLogedIn()}
               />
             }
           />
@@ -100,7 +94,7 @@ const router = createBrowserRouter(
         <Route
           path="reviews"
           element={<HostReviews />}
-          loader={hostReviewsLoader}
+          loader={async () => await chceckIfUserIsLogedIn()}
         />
       </Route>
       <Route path="*" element={<NotFoundErrorPage />} />

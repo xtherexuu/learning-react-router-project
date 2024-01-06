@@ -1,3 +1,5 @@
+import { redirect } from "react-router-dom";
+
 export async function fetchData(link) {
   const response = await fetch(link);
   if (!response.ok) {
@@ -9,4 +11,14 @@ export async function fetchData(link) {
   }
   const data = await response.json();
   return data;
+}
+
+export async function chceckIfUserIsLogedIn() {
+  const isLoggedIn = true;
+  const response = redirect("/login");
+  response.body = true;
+  if (!isLoggedIn) {
+    throw response;
+  }
+  return null;
 }

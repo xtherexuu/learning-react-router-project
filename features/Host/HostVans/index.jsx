@@ -1,5 +1,5 @@
 // import useFetchData from "../../../useFetchData";
-import { fetchData } from "../../../api";
+import { chceckIfUserIsLogedIn, fetchData } from "../../../api";
 
 import {
   Wrapper,
@@ -11,10 +11,9 @@ import {
 } from "./styled";
 import { useLoaderData } from "react-router-dom";
 
-export function loader() {
-  // const [vans, fetchStatus] = useFetchData("/api/host/vans");
+export async function loader() {
+  await chceckIfUserIsLogedIn();
   return fetchData("/api/host/vans");
-  return null;
 }
 
 export default function HostVans() {
