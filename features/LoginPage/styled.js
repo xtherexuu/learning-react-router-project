@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Form } from "react-router-dom";
 
 export const Wrapper = styled.section`
   min-height: calc(100vh - 110px - 50px - 44.094px);
@@ -31,7 +32,7 @@ export const Message = styled.p`
   margin-bottom: 45px;
 `;
 
-export const Form = styled.form`
+export const StyledForm = styled(Form)`
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
@@ -75,6 +76,9 @@ export const FormButton = styled.button`
   height: 55px;
   cursor: pointer;
   font-weight: 700;
+  &:disabled {
+    background-color: gray;
+  }
 `;
 
 export const CreateAccountContainer = styled.div`

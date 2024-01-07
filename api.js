@@ -32,7 +32,7 @@ export async function loginUser(creds) {
 }
 
 export async function chceckIfUserIsLogedIn() {
-  const isLoggedIn = false;
+  const isLoggedIn = JSON.parse(localStorage.getItem("loggedin"));
   const response = redirect(
     "/login?message=Sorry, you have to log in before you go on that page!"
   );
