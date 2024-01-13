@@ -27,7 +27,7 @@ export default function HostVansDetailspage() {
   // const { id } = useParams();
   // const [van, fetchStatus] = useFetchData(`/api/host/vans/${id}`);
 
-  const van = useLoaderData();
+  const van = useLoaderData().vans;
 
   return (
     <Wrapper>
@@ -69,21 +69,19 @@ export default function HostVansDetailspage() {
           </h1>
         )} */}
 
-        {van.vans.map((van) => (
-          <Fragment key={van.id}>
-            <BlockImage src={van.imageUrl} />
-            <BlockDataContainer>
-              <BlockType vantype={van.type}>
-                {van.type.slice(0, 1).toUpperCase() + van.type.slice(1)}
-              </BlockType>
-              <BlockName>{van.name}</BlockName>
-              <BlockPriceContainer>
-                <PriceFirstPart>${van.price}/</PriceFirstPart>
-                <PriceSecoundPart>day</PriceSecoundPart>
-              </BlockPriceContainer>
-            </BlockDataContainer>
-          </Fragment>
-        ))}
+        <Fragment key={van.id}>
+          <BlockImage src={van.imageUrl} />
+          <BlockDataContainer>
+            <BlockType vantype={van.type}>
+              {van.type.slice(0, 1).toUpperCase() + van.type.slice(1)}
+            </BlockType>
+            <BlockName>{van.name}</BlockName>
+            <BlockPriceContainer>
+              <PriceFirstPart>${van.price}/</PriceFirstPart>
+              <PriceSecoundPart>day</PriceSecoundPart>
+            </BlockPriceContainer>
+          </BlockDataContainer>
+        </Fragment>
 
         <BlockNav>
           <StyledNavLink to="." end>
@@ -114,11 +112,11 @@ export default function HostVansDetailspage() {
       <Outlet
         context={[
           {
-            name: van.vans[0].name,
-            description: van.vans[0].description,
-            type: van.vans[0].type,
-            price: van.vans[0].price,
-            imageUrl: van.vans[0].imageUrl,
+            name: van.name,
+            description: van.description,
+            type: van.type,
+            price: van.price,
+            imageUrl: van.imageUrl,
           },
         ]}
       />
