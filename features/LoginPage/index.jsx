@@ -18,6 +18,7 @@ export function loader({ request }) {
 
 export async function action({ request }) {
   const formDataObj = await request.formData();
+  console.log(new URLSearchParams(new URL(request.url).searchParams).get("message"))
   const email = formDataObj.get("email");
   const password = formDataObj.get("password");
   const formData = { email, password };
@@ -28,8 +29,8 @@ export async function action({ request }) {
     response.body = true;
     return response;
   } catch (error) {
-    console.log(error)
-    console.log(error.message)
+    console.error(error)
+    console.error(error.message)
     return error.message;
   }
 }
