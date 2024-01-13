@@ -13,19 +13,19 @@ import {
 import { loginUser } from "../../api";
 
 export function loader({ request }) {
-  return new URL(request.url).searchParams?.get("message") || null;
+  return new URL(request.url).searchParams.get("message") || null;
 }
 
 export async function action({ request }) {
   const formDataObj = await request.formData();
-  console.log(new URLSearchParams(new URL(request.url).searchParams).get("message"))
   const email = formDataObj.get("email");
   const password = formDataObj.get("password");
   const formData = { email, password };
   try {
     const data = await loginUser(formData);
     localStorage.setItem("loggedin", JSON.stringify(true));
-    const response = redirect("/host", { replace: true});
+    const redirectTo = new URL(request.url).searchParams.get("redirectTo") || "/host";
+    const response = redirect(redirectTo, { replace: true});
     response.body = true;
     return response;
   } catch (error) {

@@ -17,8 +17,8 @@ import {
 import { Fragment, useEffect } from "react";
 import { chceckIfUserIsLogedIn, fetchData } from "../../../../api";
 
-export async function loader({ params }) {
-  await chceckIfUserIsLogedIn();
+export async function loader({ params, request }) {
+  await chceckIfUserIsLogedIn(request);
   const id = params.id;
   return fetchData(`/api/host/vans/${id}`);
 }

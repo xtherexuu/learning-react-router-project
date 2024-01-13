@@ -11,8 +11,8 @@ import {
 } from "./styled";
 import { useLoaderData } from "react-router-dom";
 
-export async function loader() {
-  await chceckIfUserIsLogedIn();
+export async function loader({ request }) {
+  await chceckIfUserIsLogedIn(request);
   return fetchData("/api/host/vans");
 }
 

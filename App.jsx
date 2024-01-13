@@ -53,17 +53,17 @@ const router = createBrowserRouter(
         loader={vansDeatailspageLoader}
         errorElement={<ErrorPage />}
       />
-
+      {/* HOST SECTION */}
       <Route path="host" element={<HostLayout />}>
         <Route
           index
           element={<HostDashboard />}
-          loader={async () => await chceckIfUserIsLogedIn()}
+          loader={async ({ request }) => await chceckIfUserIsLogedIn(request)}
         />
         <Route
           path="income"
           element={<HostIncome />}
-          loader={async () => await chceckIfUserIsLogedIn()}
+          loader={async ({ request }) => await chceckIfUserIsLogedIn(request)}
         />
         <Route
           path="vans"
@@ -80,13 +80,15 @@ const router = createBrowserRouter(
           <Route
             index
             element={<HostVansDetailspageDashboard />}
-            loader={async () => await chceckIfUserIsLogedIn()}
+            loader={async ({ request }) => await chceckIfUserIsLogedIn(request)}
           />
           <Route
             path="pricing"
             element={
               <HostVansDetailspagePricing
-                loader={async () => await chceckIfUserIsLogedIn()}
+                loader={async ({ request }) =>
+                  await chceckIfUserIsLogedIn(request)
+                }
               />
             }
           />
@@ -94,7 +96,9 @@ const router = createBrowserRouter(
             path="photos"
             element={
               <HostVansDetailspagePhotos
-                loader={async () => await chceckIfUserIsLogedIn()}
+                loader={async ({ request }) =>
+                  await chceckIfUserIsLogedIn(request)
+                }
               />
             }
           />
@@ -102,7 +106,7 @@ const router = createBrowserRouter(
         <Route
           path="reviews"
           element={<HostReviews />}
-          loader={async () => await chceckIfUserIsLogedIn()}
+          loader={async ({ request }) => await chceckIfUserIsLogedIn(request)}
         />
       </Route>
       <Route path="*" element={<NotFoundErrorPage />} />
