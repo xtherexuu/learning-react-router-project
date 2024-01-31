@@ -1,4 +1,5 @@
 // import useFetchData from "../../../useFetchData";
+import { Suspense } from "react";
 import { chceckIfUserIsLogedIn, fetchData } from "../../../api";
 
 import {
@@ -9,11 +10,11 @@ import {
   SectionHeading,
   VanBlock,
 } from "./styled";
-import { useLoaderData } from "react-router-dom";
+import { Await, defer, useLoaderData } from "react-router-dom";
 
 export async function loader({ request }) {
   await chceckIfUserIsLogedIn(request);
-  return fetchData("/api/host/vans");
+  return defer({ vans: fetchData("/api/host/vans") });
 }
 
 export default function HostVans() {
@@ -38,13 +39,19 @@ export default function HostVans() {
       ) : (
         <h1>Something wents wrong! 😥 Refresh the site or try again later.</h1>
       )} */}
-      {loaderData.vans.map((van) => (
-        <VanBlock to={van.id} key={van.id}>
-          <BlockImage src={van.imageUrl} />
-          <BlockName>{van.name}</BlockName>
-          <BlockPrice>${van.price}/day</BlockPrice>
-        </VanBlock>
-      ))}
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Await resolve={loaderData.vans}>
+          {(vans) =>
+            vans.vans.map((van) => (
+              <VanBlock to={van.id} key={van.id}>
+                <BlockImage src={van.imageUrl} />
+                <BlockName>{van.name}</BlockName>
+                <BlockPrice>${van.price}/day</BlockPrice>
+              </VanBlock>
+            ))
+          }
+        </Await>
+      </Suspense>
     </Wrapper>
   );
 }
