@@ -12,7 +12,7 @@ import VansDetailspage, {
 } from "./features/Vans/VansDetailspage";
 import Layout from "./common/Layout";
 import HostLayout from "./common/HostLayout";
-import HostDashboard from "./features/Host/HostDashboard";
+import HostDashboard, {loader as hostDashboardLoader} from "./features/Host/HostDashboard";
 import HostIncome from "./features/Host/HostIncome";
 import HostReviews from "./features/Host/HostReviews";
 import HostVans, { loader as hostVansLoader } from "./features/Host/HostVans";
@@ -58,7 +58,7 @@ const router = createBrowserRouter(
         <Route
           index
           element={<HostDashboard />}
-          loader={async ({ request }) => await chceckIfUserIsLogedIn(request)}
+          loader={hostDashboardLoader}
         />
         <Route
           path="income"

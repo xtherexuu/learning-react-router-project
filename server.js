@@ -4,6 +4,8 @@ createServer({
   models: {
     vans: Model,
     users: Model,
+    rates: Model,
+    incomes: Model,
   },
 
   seeds(server) {
@@ -79,12 +81,41 @@ createServer({
       password: "p123",
       name: "Bob",
     });
+    server.create("rate", {
+      rate: 5,
+      comment: "Some comment1"
+    });
+    server.create("rate", {
+      rate: 5,
+      comment: "Some comment2"
+    });
+    server.create("rate", {
+      rate: 5,
+      comment: "Some comment3"
+    });
+    server.create("rate", {
+      rate: 5,
+      comment: "Some comment4"
+    });
+    server.create("rate", {
+      rate: 5,
+      comment: "Some comment5"
+    });
+    server.create("rate", {
+      rate: 5,
+      comment: "Some comment6"
+    });
   },
 
   routes() {
     this.namespace = "api";
     this.logging = false;
     this.timing = 1000;
+
+    this.get("/rates", (schema, request) => {
+      // return new Response(400, {}, {error: "Error fetching data"})
+      return schema.rates.all();
+    });
 
     this.get("/vans", (schema, request) => {
       // return new Response(400, {}, {error: "Error fetching data"})
