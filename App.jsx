@@ -14,7 +14,7 @@ import Layout from "./common/Layout";
 import HostLayout from "./common/HostLayout";
 import HostDashboard, {loader as hostDashboardLoader} from "./features/Host/HostDashboard";
 import HostIncome from "./features/Host/HostIncome";
-import HostReviews from "./features/Host/HostReviews";
+import HostReviews, {loader as hostReviewsLoader} from "./features/Host/HostReviews";
 import HostVans, { loader as hostVansLoader } from "./features/Host/HostVans";
 import HostVansDetailspage, {
   loader as hostVansDetailspageLoader,
@@ -106,7 +106,7 @@ const router = createBrowserRouter(
         <Route
           path="reviews"
           element={<HostReviews />}
-          loader={async ({ request }) => await chceckIfUserIsLogedIn(request)}
+          loader={hostReviewsLoader}
         />
       </Route>
       <Route path="*" element={<NotFoundErrorPage />} />

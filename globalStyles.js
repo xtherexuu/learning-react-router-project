@@ -26,6 +26,33 @@ const GlobalStyles = createGlobalStyle`
             transform: translateX(5px);
         }
     }
+    @keyframes reviewsBarContainerAnimation {
+        0% {
+            visibility: hidden;
+            transform: translateY(-18px);
+        }
+        50% {
+            visibility: visible;
+            transform: translateY(-9px);
+        }
+        100% {
+            visibility: visible;
+            transform: translateY(0);
+        }
+    }
+    @keyframes reviewsBarAnimation {
+        0% {
+            width: 0%;
+        }
+    }
+    @keyframes showElement {
+        0% {
+            display: none;
+        }
+        100% {
+            display: block;
+        }
+    }
 `;
 
 export default GlobalStyles;
