@@ -1,11 +1,4 @@
-import {
-  Await,
-  Outlet,
-  defer,
-  useLoaderData,
-  useParams,
-} from "react-router-dom";
-// import useFetchData from "../../../../useFetchData";
+import { Await, Outlet, defer, useLoaderData } from "react-router-dom";
 import {
   Wrapper,
   BlockImage,
@@ -20,7 +13,7 @@ import {
   VanBlock,
   BlockDataContainer,
 } from "./styled";
-import { Fragment, Suspense, useEffect } from "react";
+import { Fragment, Suspense } from "react";
 import { chceckIfUserIsLogedIn, fetchData } from "../../../../api";
 
 export async function loader({ params, request }) {
@@ -30,9 +23,6 @@ export async function loader({ params, request }) {
 }
 
 export default function HostVansDetailspage() {
-  // const { id } = useParams();
-  // const [van, fetchStatus] = useFetchData(`/api/host/vans/${id}`);
-
   const loaderData = useLoaderData();
 
   return (
@@ -50,7 +40,8 @@ export default function HostVansDetailspage() {
                     <BlockImage src={van.vans.imageUrl} />
                     <BlockDataContainer>
                       <BlockType vantype={van.vans.type}>
-                        {van.vans.type.slice(0, 1).toUpperCase() + van.vans.type.slice(1)}
+                        {van.vans.type.slice(0, 1).toUpperCase() +
+                          van.vans.type.slice(1)}
                       </BlockType>
                       <BlockName>{van.vans.name}</BlockName>
                       <BlockPriceContainer>

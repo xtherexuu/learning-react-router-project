@@ -1,5 +1,4 @@
 import { useLoaderData, useSearchParams, Await, defer } from "react-router-dom";
-import useFetchData from "../../../useFetchData";
 import { fetchData } from "../../../api";
 import {
   ClearFilterButton,
@@ -27,7 +26,6 @@ export function loader() {
 
 export default function VansPage() {
   const loaderData = useLoaderData();
-  // const [data, fetchStatus] = useFetchData("/api/vans");
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
 
@@ -60,36 +58,6 @@ export default function VansPage() {
         ) : null}
       </Filters>
       <VansContainer>
-        {/* {fetchStatus === "pending" ? (
-          <h1>Loading...</h1>
-        ) : fetchStatus === "error" ? (
-          <h1>Something wents wrong! 😥 Try again later.</h1>
-        ) : fetchStatus === "resolved" ? (
-          data.vans
-            .filter((van) => (typeFilter ? van.type === typeFilter : true))
-            .map((van) => (
-              <VanElement
-                to={van.id}
-                state={{
-                  search: `?${searchParams.toString()}`,
-                  type: typeFilter,
-                }}
-                key={van.id}
-              >
-                <VanElementImage src={van.imageUrl} />
-                <VanElementHeading>{van.name}</VanElementHeading>
-                <VanElementCategory category={van.type}>
-                  {van.type.slice(0, 1).toUpperCase() + van.type.slice(1)}
-                </VanElementCategory>
-                <VanElementPriceContainer>
-                  <h4>${van.price}</h4>
-                  <p>/day</p>
-                </VanElementPriceContainer>
-              </VanElement>
-            ))
-        ) : (
-          <h1>Something wents wrong! 😥 Try again later.</h1>
-        )} */}
         <React.Suspense fallback={<h1>LOADING...</h1>}>
           <Await resolve={loaderData.data}>
             {(data) =>

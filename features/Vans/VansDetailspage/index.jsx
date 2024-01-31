@@ -1,11 +1,4 @@
-import {
-  Await,
-  defer,
-  useLoaderData,
-  useLocation,
-  useParams,
-} from "react-router-dom";
-// import useFetchData from "../../../useFetchData";
+import { Await, defer, useLoaderData, useLocation } from "react-router-dom";
 import {
   GoBackButton,
   RentButton,
@@ -25,8 +18,6 @@ export function loader({ params }) {
 }
 
 export default function VansDetailspage() {
-  // const params = useParams();
-  // const [van, fetchStatus] = useFetchData(`/api/vans/${params.id}`);
   const location = useLocation();
   const returnSearchParams = location.state?.search || "";
   const searchTypeParameter = location.state?.type || "all";
